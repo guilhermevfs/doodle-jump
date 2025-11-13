@@ -1,19 +1,61 @@
-# FHEVM React Template
+# FHEDoodleJump – FHEVM React Game
 
-A minimal React frontend template for building FHEVM-enabled decentralized applications (dApps). This template provides a simple development interface for interacting with FHEVM smart contracts, specifically the `FHECounter.sol` contract.
+FHEDoodleJump is a browser-based Doodle Jump-inspired game built with React, integrated with **FHEVM** (Fully Homomorphic Encryption Virtual Machine). Players can jump on platforms, score points, and submit encrypted scores to the blockchain.
 
-## 🚀 What is FHEVM?
+This project is based on a minimal React + FHEVM template.
 
-FHEVM (Fully Homomorphic Encryption Virtual Machine) enables computation on encrypted data directly on Ethereum. This template demonstrates how to build dApps that can perform computations while keeping data private.
+---
 
-## ✨ Features
+## Features
 
-- **🔐 FHEVM Integration**: Built-in support for fully homomorphic encryption
-- **⚛️ React + Next.js**: Modern, performant frontend framework
-- **🎨 Tailwind CSS**: Utility-first styling for rapid UI development
-- **🔗 RainbowKit**: Seamless wallet connection and management
-- **🌐 Multi-Network Support**: Works on both Sepolia testnet and local Hardhat node
-- **📦 Monorepo Structure**: Organized packages for SDK, contracts, and frontend
+- 🕹️ Classic Doodle Jump gameplay: jump on platforms, move left/right.
+- 🎨 Platforms with different colors and behaviors:
+  - **Green** – static platform  
+  - **Blue** – moving platform  
+  - **Brown** – breaks after touch  
+- 🔒 Submit scores encrypted via FHEVM.  
+- 📊 Decrypt and verify scores on-chain.  
+- 🌐 Wallet connection via RainbowKit.  
+- 💻 Built with React, TypeScript, TailwindCSS, Framer Motion.
+
+---
+
+## How to Play
+
+FHEDoodleJump is a platform-jumping game similar to Doodle Jump, with FHEVM integration for submitting encrypted scores.
+
+### 1. Start the Game
+- Click **Connect Wallet** to connect to FHEVM (only once per session).
+- Click **Start Challenge** to begin the game for the first time, or **Restart Challenge** to play again after a game over.
+
+### 2. Controls
+- **Arrow Left** → Move the character left.
+- **Arrow Right** → Move the character right.
+- The character will **automatically jump** when landing on a platform.
+
+### 3. Platforms
+Each platform has a color and special behavior:
+
+| Platform Color | Behavior |
+|----------------|----------|
+| **Green**      | Standard static platform. |
+| **Blue**       | Moving horizontally; character moves with it when jumped on. |
+| **Brown**      | Breaks after jumping on it; cannot be used again. |
+
+### 4. Objective
+- Keep jumping upwards to reach **the highest score possible**.
+- Avoid falling off the screen — falling ends the game.
+
+### 5. Scoring
+- Your score increases as you ascend.
+- After a game over, you can **submit your score encrypted to FHEVM** for verification.
+
+### 6. Tips
+- Use moving platforms strategically to reach higher.
+- Brown platforms give a boost but will disappear, so plan your jumps carefully.
+- Left and right arrows let you control horizontal movement; timing is key for high scores.
+
+---
 
 ## 📋 Prerequinextjss
 
@@ -31,7 +73,7 @@ Before you begin, ensure you have:
 ```bash
 # Clone the repository
 git clone <repository-url>
-cd fhevm-react-template
+cd doodle-jump
 
 # Initialize submodules (includes fhevm-hardhat-template)
 git submodule update --init --recursive
@@ -124,7 +166,7 @@ For more details, see the [MetaMask development guide](https://docs.metamask.io/
 This template uses a monorepo structure with three main packages:
 
 ```
-fhevm-react-template/
+doodle-jump/
 ├── packages/
 │   ├── fhevm-hardhat-template/    # Smart contracts & deployment
 │   ├── fhevm-sdk/                 # FHEVM SDK package
@@ -134,8 +176,8 @@ fhevm-react-template/
 
 ### Key Components
 
-#### 🔗 FHEVM Integration (`packages/nextjs/hooks/fhecounter-example/`)
-- **`useFHECounterWagmi.tsx`**: Example hook demonstrating FHEVM contract interaction
+#### 🔗 FHEVM Integration (`packages/nextjs/hooks`)
+- **`useFHEDoodleJump.tsx`**: Example hook demonstrating FHEVM contract interaction
 - Essential hooks for FHEVM-enabled smart contract communication
 - Easily copyable to any FHEVM + React project
 
