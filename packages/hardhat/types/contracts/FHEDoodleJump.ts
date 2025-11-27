@@ -23,13 +23,17 @@ import type {
 export interface FHEDoodleJumpInterface extends Interface {
   getFunction(
     nameOrSignature:
+      | "confidentialProtocolId"
       | "getJumpHistory"
       | "getLastJump"
       | "getTotalJumps"
-      | "protocolId"
       | "submitJump"
   ): FunctionFragment;
 
+  encodeFunctionData(
+    functionFragment: "confidentialProtocolId",
+    values?: undefined
+  ): string;
   encodeFunctionData(
     functionFragment: "getJumpHistory",
     values: [AddressLike]
@@ -41,10 +45,6 @@ export interface FHEDoodleJumpInterface extends Interface {
   encodeFunctionData(
     functionFragment: "getTotalJumps",
     values: [AddressLike]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "protocolId",
-    values?: undefined
   ): string;
   encodeFunctionData(
     functionFragment: "submitJump",
@@ -52,6 +52,10 @@ export interface FHEDoodleJumpInterface extends Interface {
   ): string;
 
   decodeFunctionResult(
+    functionFragment: "confidentialProtocolId",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "getJumpHistory",
     data: BytesLike
   ): Result;
@@ -63,7 +67,6 @@ export interface FHEDoodleJumpInterface extends Interface {
     functionFragment: "getTotalJumps",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "protocolId", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "submitJump", data: BytesLike): Result;
 }
 
@@ -110,6 +113,8 @@ export interface FHEDoodleJump extends BaseContract {
     event?: TCEvent
   ): Promise<this>;
 
+  confidentialProtocolId: TypedContractMethod<[], [bigint], "view">;
+
   getJumpHistory: TypedContractMethod<
     [player: AddressLike],
     [string[]],
@@ -119,8 +124,6 @@ export interface FHEDoodleJump extends BaseContract {
   getLastJump: TypedContractMethod<[], [string], "view">;
 
   getTotalJumps: TypedContractMethod<[player: AddressLike], [bigint], "view">;
-
-  protocolId: TypedContractMethod<[], [bigint], "view">;
 
   submitJump: TypedContractMethod<
     [encryptedJump: BytesLike, proof: BytesLike],
@@ -133,6 +136,9 @@ export interface FHEDoodleJump extends BaseContract {
   ): T;
 
   getFunction(
+    nameOrSignature: "confidentialProtocolId"
+  ): TypedContractMethod<[], [bigint], "view">;
+  getFunction(
     nameOrSignature: "getJumpHistory"
   ): TypedContractMethod<[player: AddressLike], [string[]], "view">;
   getFunction(
@@ -141,9 +147,6 @@ export interface FHEDoodleJump extends BaseContract {
   getFunction(
     nameOrSignature: "getTotalJumps"
   ): TypedContractMethod<[player: AddressLike], [bigint], "view">;
-  getFunction(
-    nameOrSignature: "protocolId"
-  ): TypedContractMethod<[], [bigint], "view">;
   getFunction(
     nameOrSignature: "submitJump"
   ): TypedContractMethod<

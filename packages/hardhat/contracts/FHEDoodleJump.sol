@@ -2,7 +2,7 @@
 pragma solidity ^0.8.24;
 
 import {FHE, euint32, externalEuint32} from "@fhevm/solidity/lib/FHE.sol";
-import {SepoliaConfig} from "@fhevm/solidity/config/ZamaConfig.sol";
+import {ZamaEthereumConfig} from "@fhevm/solidity/config/ZamaConfig.sol";
 
 /**
  * @title FHEDoodleJump
@@ -10,7 +10,7 @@ import {SepoliaConfig} from "@fhevm/solidity/config/ZamaConfig.sol";
  *         Each player records their Doodle Jump performance privately using FHE.
  *         Plaintext data is never revealed — everything stays encrypted.
  */
-contract FHEDoodleJump is SepoliaConfig {
+contract FHEDoodleJump is ZamaEthereumConfig {
     /// @dev Encrypted jump records (each represents one run/score).
     mapping(address => euint32[]) private _playerJumps;
 
